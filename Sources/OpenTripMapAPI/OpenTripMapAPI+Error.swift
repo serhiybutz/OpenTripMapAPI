@@ -28,8 +28,8 @@ extension OpenTripMapAPI {
         /// The server sent data in an unexpected format
         case decoding(Swift.Error)
 
-        /// General server-side error.
-        case server(statusCode: HTTPStatusCode)
+        /// General server-side error. If `retryAfter` is set, the client can send the same request after the given time.
+        case server(statusCode: HTTPStatusCode, retryAfter: String? = nil)
 
         case other(statusCode: HTTPStatusCode, data: Data)
     }
@@ -45,7 +45,7 @@ extension OpenTripMapAPI.Error: LocalizedError {
         case .invalidResponse(let data): return "Invalid response: \(data)"
         case .invalidStatusCode(let number): return "Invalid status code: \(number)"
         case .decoding: return "The server returned data in an unexpected format. Try updating the app."
-        case .server(let statusCode): return "Server error, status code: \(statusCode.code)"
+        case .server(let statusCode, let retryAfter): return "Server error, status code: \(statusCode.code), retry after: \(retryAfter ?? "␀")"
         case .other(let statusCode, _): return "Other error, status code: \(statusCode.code)"
         }
     }

@@ -132,7 +132,8 @@ open class OpenTripMapAPI {
                     switch statusCode.responseClass {
                     case .serverError:
 
-                        throw Error.server(statusCode: statusCode)
+                        let retryAfter = httpResponse.value(forHTTPHeaderField: "Retry-After")
+                        throw Error.server(statusCode: statusCode, retryAfter: retryAfter)
 
                     default:
 
@@ -143,6 +144,12 @@ open class OpenTripMapAPI {
                 return data
             }
             .mapError { $0 as! Error } // tryMap has Failure = Swift.Error, so convert error to our error type
+            .retry(2, withBackoff: 3) { error in
+                if case Error.server = error {
+                    return true
+                }
+                return false
+            }
             .share() // use only one subscription with mutliple subscribers, but share the output between them (since the actual request is async it's safe to use it without resorting to makeConnectable() or multicast())
             .eraseToAnyPublisher()
     }
