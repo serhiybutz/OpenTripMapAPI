@@ -16,6 +16,7 @@ extension OpenTripMapAPI {
 
         public enum Score: Int {
 
+            case rate0 = 0
             case rate1 = 1
             case rate2 = 2
             case rate3 = 3
@@ -42,6 +43,9 @@ extension OpenTripMapAPI.Rate: Decodable {
         let val = try container.decode(String.self)
 
         switch val {
+        case "0":
+            self.score = .rate0
+            self.isCulturalHeritage = false
         case "1":
             self.score = .rate1
             self.isCulturalHeritage = false
