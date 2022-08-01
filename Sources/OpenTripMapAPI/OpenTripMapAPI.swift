@@ -58,6 +58,8 @@ open class OpenTripMapAPI {
                 }
                 .handleEvents(receiveOutput: { objects in
 
+                    dispatchPrecondition(condition: .notOnQueue(.main))
+
                     os_log(.info, log: OSLog.default, "Fetching objects @\(self.logify(endpointURL)) succeded: \(objects.count) object(s) received")
                 }, receiveCompletion: {
 

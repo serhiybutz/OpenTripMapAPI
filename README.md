@@ -1,6 +1,7 @@
 # OpenTripMapAPI
 
  Source: https://opentripmap.io/docs
+         https://opentripmap.io/product
 
  API Requests
 
