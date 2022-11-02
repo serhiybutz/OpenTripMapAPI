@@ -2,8 +2,8 @@
 //  Publisher+backoff retry.swift
 //  OpenTripMapAPI
 //
-//  Created by Serge Bouts on 3/13/22
-//  Copyright © Serge Bouts 2022
+//  Created by Serhiy Butz on 3/13/22
+//  Copyright © Serhiy Butz 2022
 //  MIT license, see LICENSE file for details
 //
 

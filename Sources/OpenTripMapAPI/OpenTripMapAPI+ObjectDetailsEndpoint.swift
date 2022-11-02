@@ -2,8 +2,8 @@
 //  OpenTripMapAPI+ObjectDetailsEndpoint.swift
 //  OpenTripMapAPI
 //
-//  Created by Serge Bouts on 5/26/21
-//  Copyright © Serge Bouts 2021
+//  Created by Serhiy Butz on 5/26/21
+//  Copyright © Serhiy Butz 2021
 //  MIT license, see LICENSE file for details
 //
 
